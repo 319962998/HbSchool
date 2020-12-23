@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.NoteSessionMapper">
+	<insert id="insert">
+		insert into notes_session values(#{param1},#{param2});
+	</insert>
+    <delete id="deleteBySIdAndNId">
+		delete from notes_session where s_id = #{param1} and n_id = #{param2}
+	</delete>
+    <select id="selectCountBySId" resultType="java.lang.Integer">
+		select count(*) from notes_session where s_id = #{id}
+	</select>
+</mapper>

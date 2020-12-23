@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <!--<environments default="development">-->
+    <!--<environment id="development">-->
+      <!--<transactionManager type="JDBC">-->
+        <!--<property name="" value=""/>-->
+      <!--</transactionManager>-->
+      <!--<dataSource type="UNPOOLED">-->
+        <!--<property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/hongbo"/>-->
+        <!--<property name="username" value="root"/>-->
+        <!--<property name="password" value="123456"/>-->
+      <!--</dataSource>-->
+    <!--</environment>-->
+  <!--</environments>-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+  <!--<mappers>-->
+<!--&lt;!&ndash;    <mapper resource="com/colin/config/sql/User.xml"/>&ndash;&gt;-->
+      <!--<mapper resource="config/sql/User.xml"/>-->
+      <!--<mapper class="mapper.UserMapper"/>-->
+    <!--&lt;!&ndash;<mapper resource="mapper/UserMapper.xml"></mapper>&ndash;&gt;-->
+      <!--<mapper class="mapper.TeacherMapper"/>-->
+      <!--<mapper class="mapper.RelitionMapper"/>-->
+      <!--<mapper class="mapper.CourseMapper"/>-->
+      <!--<mapper class="mapper.HistoryMapper"/>-->
+  <!--</mappers>-->
+    <typeAliases>
+        <package name="com.colin.bean"/>
+    </typeAliases>
+
+</configuration>

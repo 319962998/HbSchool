@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.ForumMapper">
+    <insert id="insertUserForum">
+        insert into forum(s_id,t_id,title, problem, update_time,img_name,img_content) values (#{param1},0,#{param2},#{param3},now(),#{param4},#{param5})
+    </insert>
+    <insert id="insertTeacherForum">
+        insert into forum(s_id,t_id,title, problem, update_time,img_name,img_content) values (0,#{param1},#{param2},#{param3},now(),#{param4},#{param5})
+    </insert>
+    <select id="selectForumCount" resultType="java.lang.Integer">
+        select count(*) from forum
+    </select>
+    <resultMap id="ForumResult" type="forum">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="problem" column="problem"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="imgName" column="img_name"/>
+        <result property="imgContent" column="img_content"/>
+        <result property="sId" column="s_id"/>
+        <result property="tId" column="t_id"/>
+    </resultMap>
+    <select id="selectForumByPage" resultMap="ForumResult">
+        select id, s_id, t_id, title, problem, update_time,img_name,img_content
+        from forum
+        order by update_time desc
+        limit #{offset},#{limit}
+    </select>
+    <select id="selectForumById" resultMap="ForumResult">
+        select id, s_id, t_id, title, problem, update_time,img_name,img_content
+        from forum
+        where id=#{id}
+    </select>
+    <select id="selectForumByPageAndSId" resultMap="ForumResult">
+        select id, s_id, t_id, title, problem, update_time,img_name,img_content
+        from forum
+        where s_id=#{param2}
+        order by update_time desc
+        limit #{param3},#{param4}
+
+    </select>
+    <select id="selectForumByPageAndTId" resultMap="ForumResult">
+        select id, s_id, t_id, title, problem, update_time,img_name,img_content
+        from forum
+        where t_id=#{param2}
+        order by update_time desc
+        limit #{param3},#{param4}
+
+    </select>
+</mapper>

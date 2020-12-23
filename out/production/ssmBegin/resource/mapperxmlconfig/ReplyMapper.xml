@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.ReplyMapper">
+    <resultMap id="ReplyResult" type="reply">
+        <id property="fId" column="f_id"/>
+        <result property="message" column="message"/>
+        <result property="sId" column="s_id"/>
+        <result property="tId" column="t_id"/>
+    </resultMap>
+    <insert id="insertReplyUser">
+        insert into reply(f_id,s_id,t_id,message) values (#{param1},#{param2},0,#{param3})
+    </insert>
+    <insert id="insertReplyTeacher">
+        insert into reply(f_id,s_id,t_id,message) values (#{param1},0,#{param2},#{param3})
+    </insert>
+    <select id="selectByFId" resultMap="ReplyResult">
+        select f_id, s_id, t_id, message
+        from reply
+        where f_id=#{id}
+    </select>
+</mapper>

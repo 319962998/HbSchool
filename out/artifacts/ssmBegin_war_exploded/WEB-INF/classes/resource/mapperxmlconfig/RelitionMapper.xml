@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.RelitionMapper">
+    <select id="selectBycId" resultType="com.colin.bean.Relition">
+        select * from relition where c_id=#{leaveCourseid}
+    </select>
+    <select id="selectBySId" resultType="com.colin.bean.Relition">
+        select * from relition where s_id=#{id}
+    </select>
+    <insert id="insert">insert into relition(c_id, c_name, s_id, s_name) values (#{param1},#{param2},#{param3},#{param4}) </insert>
+
+    <delete id="deleteById">delete from relition where c_id=#{param2} and s_id=#{param1} </delete>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.RelitionExamMapper">
+    <insert id="insert">
+        insert into relition_exam values (#{param1},#{param2})
+    </insert>
+    <delete id="deleteByEIdAndPId">
+        delete from relition_exam where e_id=#{param1} and p_id=#{param2}
+    </delete>
+    <select id="selectByEId" resultType="com.colin.bean.RelitionExam">
+        select * from relition_exam where e_id=#{eId}
+    </select>
+</mapper>

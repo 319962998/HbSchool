@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.TeaViewExamMapper">
+    <insert id="insert">
+        insert into tea_view_exam values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
+    </insert>
+    <update id="updateSubmit">
+        update tea_view_exam set submit=#{param3} where e_id=#{param1} and s_name=#{param2}
+    </update>
+    <select id="selectByTId" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id in(select id from exam where t_id=#{id}) order by time desc
+    </select>
+    <select id="selectByTIdLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id in(select id from exam where t_id=#{param1}) order by time desc limit #{param2},5
+    </select>
+    <select id="selectByEIdAndSName" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id=#{param1} and s_name=#{param2} order by time desc
+    </select>
+    <select id="selectByEIdAndSNameLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id=#{param1} and s_name=#{param2} order by time desc limit #{param3},5
+    </select>
+    <select id="selectByEIdAndCName" resultType="com.colin.bean.TeaViewExam">
+         select * from tea_view_exam where e_id=#{param1} and c_name=#{param2} order by time desc
+    </select>
+    <select id="selectByEIdAndCNameLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id=#{param1} and c_name=#{param2} order by time desc limit #{param3},5
+    </select>
+    <select id="selectByEId" resultType="com.colin.bean.TeaViewExam">
+       select * from tea_view_exam where e_id=#{eId} order by time desc
+    </select>
+    <select id="selectByEIdLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where e_id=#{param1} order by time desc limit #{param2},5
+    </select>
+    <select id="selectBySName" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where s_name=#{sName} order by time desc
+    </select>
+    <select id="selectBySNameAndTId" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where s_name=#{param1} and e_id in(select id from exam where t_id=#{param2}) order by time desc
+    </select>
+    <select id="selectBySNameAndTIdLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where s_name=#{param1} and e_id in(select id from exam where t_id=#{param2}) order by time desc limit #{param3},5
+    </select>
+    <select id="selectByCName" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where c_name=#{cName} order by time desc
+    </select>
+    <select id="selectByCNameLimit" resultType="com.colin.bean.TeaViewExam">
+        select * from tea_view_exam where c_name=#{param1} order by time desc limit #{param2},5
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.ForumNumberMapper">
+    <insert id="insertSId">
+        insert into forum_number(s_id,number) values (#{id},0)
+    </insert>
+    <insert id="insertTId">
+        insert into forum_number(t_id,number) values (#{id},0)
+    </insert>
+    <update id="updateBySId">
+        update forum_number set number=#{param2} where s_id=#{param1}
+    </update>
+    <update id="updateByTId">
+        update forum_number set number=#{param2} where t_id=#{param1}
+    </update>
+    <update id="updateForumNumberId">
+        update forum_number set number=#{i} where id=0
+    </update>
+    <update id="updateForumNumberSId">
+        update forum_number set number=#{param2} where s_id=#{param1}
+    </update>
+    <update id="updateForumNumberTId">
+        update forum_number set number=#{param2} where t_id=#{param1}
+    </update>
+    <select id="selectById" resultType="java.lang.Integer">
+        select number from forum_number where id=0;
+    </select>
+    <select id="selectBySId" resultType="java.lang.Integer">
+        select number from forum_number where s_id=#{id}
+    </select>
+    <select id="selectByTId" resultType="java.lang.Integer">
+        select number from forum_number where t_id=#{id}
+    </select>
+    <select id="selectForumNumberSId" resultType="com.colin.bean.ForumNumber">
+        select s_id,number from forum_number where s_id=#{id}
+    </select>
+</mapper>

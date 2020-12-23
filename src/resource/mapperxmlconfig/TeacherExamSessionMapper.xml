@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.TeacherExamSessionMapper">
+    <insert id="insert">
+        insert into teacher_exam_session values (#{id},0,0)
+    </insert>
+    <update id="updateValueByTId">
+        update teacher_exam_session set value=#{param2} where t_id=#{param1}
+    </update>
+    <update id="updateEqual">
+        update teacher_exam_session set already=#{param2} where t_id=#{param1}
+    </update>
+    <select id="selectById" resultType="com.colin.bean.TeacherExamSession">
+        select * from teacher_exam_session where t_id=#{id}
+    </select>
+</mapper>

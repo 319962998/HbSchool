@@ -1,0 +1,30 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.HistoryMapper">
+    <insert id="insertHistory">
+        insert into history values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+    </insert>
+    <delete id="deleteByCIdHistory">
+        delete from history where c_id=#{param1} and history=#{param2}
+    </delete>
+    <select id="selectByCId" resultType="com.colin.bean.History">
+        select * from history where c_id=#{courseid} group by history
+    </select>
+    <select id="selectLimitByCId" resultType="com.colin.bean.History">
+        select * from history where c_id=#{param1} group by history order by history desc limit #{param2},5
+    </select>
+    <select id="selectByCIdHistory" resultType="com.colin.bean.History">
+        select * from history where c_id=#{param1} and history=#{param2}
+    </select>
+    <select id="selectByCIdAndSId" resultType="com.colin.bean.History">
+        select * from history where c_id=#{param1} and s_id=#{param2}
+    </select>
+    <select id="selectByCIdAndSIdLimit" resultType="com.colin.bean.History">
+        select * from history where c_id=#{param1} and s_id=#{param2} order by history desc limit #{param3},5
+    </select>
+    <select id="selectByCIdGroup" resultType="com.colin.bean.History">
+        select * from history where c_id=#{cId} group by history order by history desc
+    </select>
+    <select id="selectByCIdGroupLimit" resultType="com.colin.bean.History">
+         select * from history where c_id=#{param1} group by history order by history desc limit #{param2},5
+    </select>
+</mapper>

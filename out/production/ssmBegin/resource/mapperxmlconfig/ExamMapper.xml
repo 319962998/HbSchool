@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.ExamMapper">
+    <insert id="insertExam">
+        insert into exam (t_id,name,section) values (#{param1},#{param2},#{param3})
+    </insert>
+    <delete id="deleteById">
+        delete from exam where id=#{id}
+    </delete>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from exam where t_id=#{tId}
+    </select>
+    <select id="selectLimit" resultType="com.colin.bean.Exam">
+        select * from exam where t_id=#{param2} limit #{param1},5
+    </select>
+    <select id="selectById" resultType="com.colin.bean.Exam">
+        select * from exam where id=#{id}
+    </select>
+    <select id="selectByName" resultType="com.colin.bean.Exam">
+        select * from exam where name=#{param1} and t_id=#{param2}
+    </select>
+    <select id="selectLimitByName" resultType="com.colin.bean.Exam">
+        select * from exam where name=#{param1} and t_id=#{param3} limit #{param2},5
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.ProblemMapper">
+    <insert id="insertChoose">
+        insert into problem (t_id,title,kind,context,A,B,C,D,answer) values (#{param1},#{param2},'选择题',#{param3},#{param4},#{param5},#{param6},#{param7},#{param8})
+    </insert>
+    <insert id="insertWrite">
+        insert into problem (t_id,title,kind,context,answer) values (#{param1},#{param2},"简答题",#{param3},#{param4})
+    </insert>
+    <update id="updateChoose">
+        update problem set title=#{param2},context=#{param3},A=#{param4},B=#{param5},C=#{param6},D=#{param7},answer=#{param8} where id=#{param1}
+    </update>
+    <update id="updateWrite">
+        update problem  set title=#{param2},context=#{param3},answer=#{param4} where id=#{param1}
+    </update>
+    <delete id="deleteById">
+        delete from problem where id=#{id}
+    </delete>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from problem where t_id=#{tId}
+    </select>
+    <select id="selectLimit" resultType="com.colin.bean.Problem">
+        select * from problem where t_id=#{param2} limit #{param1},5
+    </select>
+    <select id="selectById" resultType="com.colin.bean.Problem">
+        select * from problem where id=#{id}
+    </select>
+    <select id="selectByTitle" resultType="com.colin.bean.Problem">
+        select * from problem where title=#{param1} and t_id=#{param2}
+    </select>
+    <select id="selectLimitByTitle" resultType="com.colin.bean.Problem">
+        select * from problem where title=#{param1} and t_id=#{param3} limit #{param2},5
+    </select>
+</mapper>

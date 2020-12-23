@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.NoteMapper">
+
+
+    <resultMap id="NoteResult" type="com.colin.bean.Note">
+        <id property="id" column="id"></id>
+        <result property="title" column="title"></result>
+        <result property="textContent" column="text_content"></result>
+        <result property="imgName" column="img_name"></result>
+        <result property="imgContent" column="img_content"></result>
+        <result property="date" column="date_time"></result>
+        <association property="course" javaType="com.colin.bean.Course">
+            <id property="id" column="c_id"></id>
+        </association>
+        <association property="teacher" javaType="com.colin.bean.Teacher">
+            <id property="id" column="t_id"></id>
+        </association>
+    </resultMap>
+    <insert id="insertNote">
+        insert into notes values(null, #{title}, #{course.id}, #{teacher.id}, #{textContent}, #{imgName}, #{imgContent}, #{date})
+    </insert>
+    <update id="updateNote">
+         update notes set title=#{param2} ,text_content=#{param3},date_time=#{param4} where id=#{param1};
+    </update>
+    <update id="updatenoteAll">
+         update notes set title=#{param2} ,text_content=#{param3},date_time=#{param6} ,img_name=#{param4},img_content=#{param5} where id=#{param1};
+    </update>
+    <delete id="deleteNoteById">
+        delete from notes where id =#{noteId}
+    </delete>
+    <select id="selectNoteByCidAndTid" resultType="com.colin.bean.Note">
+        select * from notes where c_id=#{param1} and t_id=#{param2} and date_time=#{param3};
+    </select>
+    <select id="selectNoteByCidTid" resultType="com.colin.bean.Note">
+         select * from notes where c_id=#{param1} and t_id=#{param2} order by date_time desc limit 0,1;
+    </select>
+	<select id="selectNoteByTid" resultMap="NoteResult">
+       select * from notes where t_id=#{param1} order by date_time desc limit #{param2},#{param3};
+    </select>
+
+    <select id="selectByRelitions" resultMap="NoteResult" >
+        select * from notes
+        <where>
+            <foreach collection="param1" item="item" separator=" ">
+                or c_id = #{item.cId}
+            </foreach>
+            order by date_time desc
+            limit #{param2}, #{param3}
+        </where>
+    </select>
+
+    <select id="selectSessionBySIdAndNId" resultType="java.lang.Integer">
+        select n_id from notes_session where s_id = #{param1} and n_id = #{param2}
+    </select>
+    <select id="selectById" resultMap="NoteResult">
+        select * from notes where id = #{id}
+    </select>
+    <select id="selectCountByByRelitions" resultType="java.lang.Integer">
+        select count(*) from notes
+        <where>
+        <foreach collection="list" item="item" separator=" ">
+            or c_id = #{item.cId}
+        </foreach>
+        </where>
+    </select>
+    <select id="selectUserCount" resultType="java.lang.Integer">
+         select count(*) from notes where t_id=#{id};
+    </select>
+</mapper>

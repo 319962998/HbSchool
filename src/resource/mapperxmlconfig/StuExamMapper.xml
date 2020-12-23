@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.colin.mapper.StuExamMapper">
+    <insert id="insert">
+        insert into stu_exam values (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+    </insert>
+    <update id="updateAnswerByEIdAndPId">
+        update stu_exam set send=#{param3},name=#{param4},address=#{param5} where e_id=#{param1} and p_id=#{param2}
+    </update>
+    <update id="updateAnswerByEIdAndPIdWithoutAddress">
+        update stu_exam set send=#{param3} where e_id=#{param1} and p_id=#{param2}
+    </update>
+    <select id="selectByEIdAndPId" resultType="com.colin.bean.StuExam">
+        select * from stu_exam where e_id=#{param1} and p_id=#{param2}
+    </select>
+    <select id="selectByEIdAndPIdAndSId" resultType="com.colin.bean.StuExam">
+        select * from stu_exam where e_id=#{param1} and p_id=#{param2} and s_id=#{param3}
+    </select>
+</mapper>
